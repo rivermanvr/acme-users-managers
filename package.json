@@ -1,0 +1,8 @@
+{
+  "name": "acme-users-managers",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {},
+  "author": "rivermanvr <vrgithub@riversconsulting.com>",
+  "license": "MIT"
+}
