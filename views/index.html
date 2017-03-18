@@ -1,4 +1,4 @@
-{% extends './layout.html %}
+{% extends './layout.html' %}
 
 {% block content %}
 
@@ -7,7 +7,7 @@
             {% include '_managers.html' %}      
         </div>  
         <div class='col-xs-6 col-sm-6 col-md-6 col-lg-6'>
-            {{% include '_users.html' %}}
+            {% include '_users.html' %}
         </div>      
     </div>
 

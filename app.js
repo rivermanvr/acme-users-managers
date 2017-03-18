@@ -14,7 +14,7 @@ app.use('/dist', express.static(path.join(__dirname, './dist')));
 app.use('/css', express.static(path.join(__dirname, './css')));
 
 app.get('/', (req, res, next) => {
-    res.send('hello')
+    res.render('index', { title: 'Home' })
 });
 
 app.use('/', routes);
