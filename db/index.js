@@ -4,9 +4,7 @@ const User = require( './User' );
 User.belongsTo(User, { as: 'manager' });
 User.hasMany(User, { as: 'teamMember', foreignKey: 'managerId' });
 
-const sync = () => {
-    return acmeDB.sync({ force: true });
-};
+const sync = () => acmeDB.sync({ force: true });
 
 const addUsers = () => {
     const promiseArr = [];
@@ -18,6 +16,14 @@ const addUsers = () => {
     return Promise.all(promiseArr);
 };
 
-const seed = () => sync().then(() => addUsers());
+const seed = () => sync().then(() => addUsers())
+    .then((userRecords) => {
+        const [moe, larry, curly, shep, vince] = userRecords;
+        return Promise.all([
+            larry.setManager(moe.id),
+            moe.addTeamMember(vince.id),
+            curly.addTeamMember(shep.id)
+        ])
+    });
 
 module.exports = {models: { User }, seed, sync};
