@@ -1,6 +1,9 @@
 const acmeDB = require( './db' );
 const User = require( './User' );
 
+User.belongsTo(User, { as: 'manager' });
+User.hasMany(User, { as: 'teamMember', foreignKey: 'managerId' });
+
 const sync = () => {
     return acmeDB.sync({ force: true });
 };
