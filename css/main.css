@@ -80,3 +80,7 @@ table {
     b, strong{
         font-weight: 400;
     }
+	#pageHeading{
+		margin-bottom: 5px;
+		border-bottom: 1px solid #ccc;
+	}
