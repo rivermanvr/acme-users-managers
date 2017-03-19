@@ -6,7 +6,14 @@ const userDefinition = {
 };
 
 const userMethodDefinition = {
-
+    hooks: {
+        beforeUpdate: function (user) {
+            if (user.managerId) {
+                console.log('user: ', user)
+                //find manager by id, and then change the mng record.
+            }
+        }
+    }
 };
 
 const User = acmeDB.define('user', userDefinition, userMethodDefinition);

@@ -16,14 +16,15 @@ const addUsers = () => {
     return Promise.all(promiseArr);
 };
 
-const seed = () => sync().then(() => addUsers())
-    .then((userRecords) => {
-        const [moe, larry, curly, shep, vince] = userRecords;
-        return Promise.all([
-            larry.setManager(moe.id),
-            moe.addTeamMember(vince.id),
-            curly.addTeamMember(shep.id)
-        ])
-    });
+const seed = () => sync().then(() => addUsers());
+    //decided to start things with no managers
+    // .then((userRecords) => {
+    //     const [moe, larry, curly, shep, vince] = userRecords;
+    //     return Promise.all([
+    //         larry.setManager(moe.id),
+    //         moe.addTeamMember(vince.id),
+    //         curly.addTeamMember(shep.id)
+    //     ])
+    // });
 
 module.exports = {models: { User }, seed, sync};
