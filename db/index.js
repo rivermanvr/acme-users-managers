@@ -9,22 +9,25 @@ const sync = () => acmeDB.sync({ force: true });
 const addUsers = () => {
     const promiseArr = [];
     const user = ['Moe', 'Larry', 'Curly', 'Shep', 'Vince'];
+    const mgr = [true, false, true, false, true];
     for (let i = 0; i < user.length; i++) {
         let name = user[i];
-        promiseArr.push(User.create({ name }));
+        let isMgr = mgr[i];
+        // let managerId = mgrId[i];
+        let managerId = null;        
+        promiseArr.push(User.create({ name, isMgr }));
     }
     return Promise.all(promiseArr);
 };
 
-const seed = () => sync().then(() => addUsers());
-    // // decided to start things with no managers
-    // .then((userRecords) => {
-    //     const [moe, larry, curly, shep, vince] = userRecords;
-    //     return Promise.all([
-    //         larry.setManager(moe.id),
-    //         moe.addTeamMember(vince.id),
-    //         curly.addTeamMember(shep.id)
-    //     ])
-    // });
+const seed = () => sync().then(() => addUsers())
+    .then((userRecords) => {
+        const [moe, larry, curly, shep, vince] = userRecords;
+        return Promise.all([
+            moe.addTeamMember(vince.id),
+            moe.addTeamMember(larry.id),
+            curly.addTeamMember(shep.id),
+        ])
+    });
 
 module.exports = {models: { User }, seed, sync};

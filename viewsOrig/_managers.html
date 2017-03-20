@@ -1,0 +1,17 @@
+<h5>Manager / Team List:</h5>
+<div id='managerList'>
+    {% for manager in managers %}
+        <div class='well'>
+            <div class='mgrHeading'>
+                Manager: {{ manager.name }}
+            </div>
+            <ul>
+                Team List: 
+                {% for member in manager.teamMember %}
+                    {% if member.name %} - {% endif %}
+                    {{ member.name }}
+                {% endfor %}
+            <//ul>
+        </div>
+    {% endfor %}
+</div>

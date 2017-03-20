@@ -16,6 +16,11 @@ const defineMethods = {
         managerRecords: function() {
             return this.findAll({ 
                 where: {isMgr: true },
+                include: [
+                    { model: User,
+                        as: 'teamMember'
+                    }
+                ],
                 order: [
                     ['name', 'ASC']
                 ]
