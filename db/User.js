@@ -17,7 +17,7 @@ const defineMethods = {
             return this.findAll({ 
                 where: {isMgr: true },
                 include: [
-                    { model: User,
+                    { model: this,
                         as: 'teamMember'
                     }
                 ],

@@ -6,7 +6,7 @@ const path = require( 'path' );
 
 router.get('/', (req, res, next) => {
             res.locals.title = 'Home';
-            res.render('index.html');
+            res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 
 // router.get('/', (req, res, next) => {
