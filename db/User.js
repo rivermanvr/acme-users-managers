@@ -2,10 +2,32 @@ const acmeDB = require( './db' );
 
 const userDefinition = {
     name: acmeDB.Sequelize.STRING,
-    isMgr: {type: acmeDB.Sequelize.BOOLEAN, allowNull: false, defaultValue: false}
+    isMgr: {type: acmeDB.Sequelize.BOOLEAN, defaultValue: false}
 };
 
 const userMethodDefinition = {
+    classMethods: {
+        managerRecords: function() {
+            return this.findAll({ 
+                where: {isMgr: true },
+                order: [
+                    ['name', 'ASC']
+                ]
+            })
+        },
+        teamRecords: function() {
+            return this.findAll({
+                order: [
+                    ['name', 'ASC']
+                ]
+            })
+        },
+        findByName: function (selectedName) {
+            return this.findOne({
+                where: {name: selectedName}
+            })
+        }
+    },
     hooks: {
         beforeUpdate: function (user) {
             if (user.managerId) {
