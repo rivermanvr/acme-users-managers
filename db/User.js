@@ -1,11 +1,17 @@
 const acmeDB = require( './db' );
 
-const userDefinition = {
-    name: acmeDB.Sequelize.STRING,
-    isMgr: {type: acmeDB.Sequelize.BOOLEAN, defaultValue: false}
+const defineAttr = {
+    name: {
+        type: acmeDB.Sequelize.STRING,
+        allowNull: false
+    },
+    isMgr: {
+        type: acmeDB.Sequelize.BOOLEAN, 
+        defaultValue: false
+    }
 };
 
-const userMethodDefinition = {
+const defineMethods = {
     classMethods: {
         managerRecords: function() {
             return this.findAll({ 
@@ -35,13 +41,16 @@ const userMethodDefinition = {
     },
     hooks: {
         beforeUpdate: function (user) {
-            if (user.managerId) {
-                //find manager by id, and then change the mng record.
+            if (user.isMgr === false) {
+                user.update(
+                    { managerId: null },
+                    { where: { managerId: user.id }}
+                    )
             }
         }
     }
 };
 
-const User = acmeDB.define('user', userDefinition, userMethodDefinition);
+const User = acmeDB.define('user', defineAttr, defineMethods);
 
 module.exports = User;

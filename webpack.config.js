@@ -1,5 +1,5 @@
 module.exports = {
-    entry: '.src/index',
+    entry: './src/index.js',
     output: {
         path: './dist',
         filename: 'bundle.js'
@@ -8,7 +8,8 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: 'babel',
+                loader: 'babel-loader',
+                exclude: /node_modules/,
                 query: {
                     presets: ['es2015']
                 }

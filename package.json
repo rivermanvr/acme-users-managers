@@ -2,7 +2,7 @@
   "name": "acme-users-managers",
   "version": "1.0.0",
   "main": "server.js",
-  "repository": {},
+  "repository": "https://github.com/rivermanvr/acme-users-managers",
   "author": "rivermanvr <vrgithub@riversconsulting.com>",
   "scripts": {
     "webpack": "./node_modules/webpack/bin/webpack.js -w",

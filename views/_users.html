@@ -3,10 +3,22 @@
         {% if team %}
             <div class= 'well'>
                 <table class='table'>
-                    <thead>
+                    <thead class=tableHead>
                         <th><h6>{{ team.name }}</h6></th>
                     </thead>
                     <tbody> 
+
+                        <form action='/departments' method='POST'>
+                            <label for="dept_name">Department Name:</label>
+                            <input name='name' type='text' id='deptName' style='width: 270px;' placeholder='add a new dept...'>
+                            <button class='btn btn-default btn-primary' aria-label='Left Align'>
+                                <span class='glyphicon glyphicon-hand-up' aria-hidden='true'></span>
+                                Add
+                            </button>
+                        </form>
+
+
+
                         {{ team.manager.Id }}
                     </tbody>
                 </table>
