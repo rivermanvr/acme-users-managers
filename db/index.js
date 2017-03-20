@@ -17,7 +17,7 @@ const addUsers = () => {
 };
 
 const seed = () => sync().then(() => addUsers());
-    //decided to start things with no managers
+    // // decided to start things with no managers
     // .then((userRecords) => {
     //     const [moe, larry, curly, shep, vince] = userRecords;
     //     return Promise.all([

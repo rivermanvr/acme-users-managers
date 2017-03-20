@@ -1,1 +1,15 @@
-<h5>Users</h5>
+<h5>Users:</h5>
+    {% for team in teamRecs %}
+        {% if team %}
+            <div class= 'well'>
+                <table class='table'>
+                    <thead>
+                        <th><h6>{{ team.name }}</h6></th>
+                    </thead>
+                    <tbody> 
+                        {{ team.manager.Id }}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    {% endfor %}

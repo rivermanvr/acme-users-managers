@@ -6,19 +6,13 @@ const models = acmeDB.models;
 router.get('/', (req, res, next) => {
     models.User.managerRecords()
         .then(_managers => {
-            res.locals.managers = _managers;
+            res.locals.managers = JSON.stringify(_managers);
         })
         .then(() => {
             return models.User.teamRecords()
         })
-        .then(_team => {
-            res.locals.teamRecs = _team;
-        })
-        .then(() => {
-            return models.User.findByName('Moe');
-        })
-        .then(_testName => {
-            res.locals.testName = _testName;
+        .then(_teamRecs => {
+            res.locals.teamRecs = _teamRecs;
         })
         .then(() => {
             res.render('index', { title: 'Home' })

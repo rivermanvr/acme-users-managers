@@ -26,12 +26,17 @@ const userMethodDefinition = {
             return this.findOne({
                 where: {name: selectedName}
             })
-        }
+        },
+        findById: function (selectedId) {
+            return this.findOne({
+                where: {id: selectedId}
+            })
+        },
     },
     hooks: {
         beforeUpdate: function (user) {
             if (user.managerId) {
-                console.log('user: ', user)
+                console.log('user: ', user.name)
                 //find manager by id, and then change the mng record.
             }
         }
