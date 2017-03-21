@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-const mgrButton = (member) => {
+const mgrButton = (member, onMgrStatusChg) => {
     let btn = $(`<button class="btn btn-default">
         <span class="glyphicon glyphicon-hand-up" aria-hidden="true">
         </span></button>`);

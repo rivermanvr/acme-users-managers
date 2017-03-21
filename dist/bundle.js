@@ -10428,7 +10428,7 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mgrButton = function mgrButton(member) {
+var mgrButton = function mgrButton(member, onMgrStatusChg) {
     var btn = (0, _jquery2.default)('<button class="btn btn-default">\n        <span class="glyphicon glyphicon-hand-up" aria-hidden="true">\n        </span></button>');
     if (member.isMgr) {
         btn.text('remove as Manager');
@@ -10462,7 +10462,9 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mgrSelect = function mgrSelect() {};
+var mgrSelect = function mgrSelect(member) {
+    mgrSelector;
+};
 
 exports.default = mgrSelect;
 

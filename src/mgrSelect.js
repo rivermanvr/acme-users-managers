@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
-const mgrSelect = () => {
-    
+const mgrSelect = (member) => {
+    mgrSelector 
 }
 
 export default mgrSelect;
