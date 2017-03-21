@@ -10,7 +10,10 @@ const mgrSelect = (teamMembers, member, onSelectMgr) => {
      selectDD.append($(`<option></option>`).attr('value', '').text('select a Manager for this team member.'));
 
      let optionItems = teamMembers.map(teamMate => {
-        let optionItem = $(`<option></option>`).attr('value', teamMate.id).text(teamMate.name);
+        
+        let optionItem = $(`<option></option>`);
+        optionItem.attr('value', teamMate.id).text(teamMate.name);
+        
         if (member.managerId === teamMate.id) optionItem.attr('selected', 'selected');
         selectDD.append(optionItem);
      })
@@ -22,9 +25,9 @@ const mgrSelect = (teamMembers, member, onSelectMgr) => {
      selectDD.on('change', function(ev) {
          ev.preventDefault();
          onSelectMgr(member.id, this.value);
-     })
+     });
 
      return formGrp;
-}
+};
 
 export default mgrSelect;

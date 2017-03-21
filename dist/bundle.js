@@ -10476,7 +10476,10 @@ var mgrSelect = function mgrSelect(teamMembers, member, onSelectMgr) {
     selectDD.append((0, _jquery2.default)('<option></option>').attr('value', '').text('select a Manager for this team member.'));
 
     var optionItems = teamMembers.map(function (teamMate) {
-        var optionItem = (0, _jquery2.default)('<option></option>').attr('value', teamMate.id).text(teamMate.name);
+
+        var optionItem = (0, _jquery2.default)('<option></option>');
+        optionItem.attr('value', teamMate.id).text(teamMate.name);
+
         if (member.managerId === teamMate.id) optionItem.attr('selected', 'selected');
         selectDD.append(optionItem);
     });
@@ -10525,7 +10528,7 @@ var getData = function getData() {
 
 var onSelectMgr = function onSelectMgr(id, managerId) {
     _jquery2.default.ajax({
-        url: '/api/teams/' + id,
+        url: '/api/teams/' + id + '/' + managerId,
         method: 'PUT',
         data: { managerId: managerId }
     }).then(function () {

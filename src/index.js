@@ -12,9 +12,9 @@ const getData = () => {
 
 const onSelectMgr = (id, managerId) => {
     $.ajax({
-        url: `/api/teams/${id}`,
+        url: `/api/teams/${id}/${managerId}`,
         method: 'PUT',
-        data: {managerId}
+        data: { managerId: managerId }
     })
     .then(() => getData());
 };
