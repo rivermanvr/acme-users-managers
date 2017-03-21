@@ -5,7 +5,6 @@ const models = acmeDB.models;
 const path = require( 'path' );
 
 router.get('/', (req, res, next) => {
-            res.locals.title = 'Home';
             res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 
