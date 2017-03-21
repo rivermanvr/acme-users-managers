@@ -7,7 +7,7 @@ const mgrSelect = (teamMembers, member, onSelectMgr) => {
      })
 
      let selectDD = $(`<select class='form-control'></select>`);
-     selectDD.append($(`<option></option>`).attr('value', '').text('select a team member'));
+     selectDD.append($(`<option></option>`).attr('value', '').text('select a Manager for this team member.'));
 
      let optionItems = teamMembers.map(teamMate => {
         let optionItem = $(`<option></option>`).attr('value', teamMate.id).text(teamMate.name);

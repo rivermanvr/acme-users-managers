@@ -10473,7 +10473,7 @@ var mgrSelect = function mgrSelect(teamMembers, member, onSelectMgr) {
    });
 
    var selectDD = (0, _jquery2.default)('<select class=\'form-control\'></select>');
-   selectDD.append((0, _jquery2.default)('<option></option>').attr('value', '').text('select a team member'));
+   selectDD.append((0, _jquery2.default)('<option></option>').attr('value', '').text('select a Manager for this team member.'));
 
    var optionItems = teamMembers.map(function (teamMate) {
       var optionItem = (0, _jquery2.default)('<option></option>').attr('value', teamMate.id).text(teamMate.name);
