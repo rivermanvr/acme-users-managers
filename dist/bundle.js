@@ -10383,7 +10383,7 @@ var renderTeamContainers = function renderTeamContainers(state, onSelectMgr, onM
     container.empty();
     var memberContainers = state.teamMembers.map(function (member) {
         var section = (0, _jquery2.default)('<div class="panel panel-default">\n            <div class="panel-heading">' + member.name + '</div></div>');
-        var sectionBody = (0, _jquery2.default)('<div class="panel-body">\n            more stuff will be here</div>');
+        var sectionBody = (0, _jquery2.default)('<div class="panel-body"></div>');
         sectionBody.append((0, _mgrButton2.default)(member, onMgrStatusChg));
         sectionBody.append((0, _mgrSelect2.default)(state.teamMembers, member, onSelectMgr));
         section.append(sectionBody);
