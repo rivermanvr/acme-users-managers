@@ -10433,7 +10433,7 @@ var _jquery2 = _interopRequireDefault(_jquery);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mgrButton = function mgrButton(member, onMgrStatusChg) {
-    var btn = (0, _jquery2.default)('<button class="btn btn-info" aria-label="Left Align">\n        <span class="glyphicon glyphicon-hand-up" aria-hidden="true">\n        </span></button>');
+    var btn = (0, _jquery2.default)('<button class="btn btn-primary" aria-label="Left Align">\n        <span class="glyphicon glyphicon-hand-up" aria-hidden="true">\n        </span></button>');
     if (member.isMgr) {
         btn.text('remove as Manager');
     } else {
