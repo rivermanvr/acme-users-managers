@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 const mgrButton = (member, onMgrStatusChg) => {
-    let btn = $(`<button class="btn btn-default">
+    let btn = $(`<button class="btn btn-info" aria-label="Left Align">
         <span class="glyphicon glyphicon-hand-up" aria-hidden="true">
         </span></button>`);
     if (member.isMgr) {
