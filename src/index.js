@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import renderMgrList from './ManagerList';
+import renderMgrList from './renderMgrList';
 
 const state = {};
 
