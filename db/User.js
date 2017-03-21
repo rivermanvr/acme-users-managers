@@ -33,9 +33,15 @@ const defineMethods = {
                 ]
             })
         },
-        findByName: function (selectedName) {
-            return this.findOne({
-                where: {name: selectedName}
+        findRemMgrId: function (selectedId) {
+            return this.findAll({
+                where: {managerId: selectedId}
+            })
+            .then(_users => {
+                _users.forEach(_user => {
+                    _user.managerId = null;
+                    _user.save();
+                })
             })
         },
         findById: function (selectedId) {
@@ -43,15 +49,17 @@ const defineMethods = {
                 where: {id: selectedId}
             })
         },
-    },
-    hooks: {
-        beforeUpdate: function (user) {
-            if (user.isMgr === false) {
-                user.update(
-                    { managerId: null },
-                    { where: { managerId: user.id }}
-                    )
-            }
+        findUpdateMgrById: function (selectedId) {
+            let mgrId;
+            return this.findById(selectedId)
+                .then(_mgr => {
+                    mgrId = _mgr.id;
+                    _mgr.isMgr = !_mgr.isMgr;
+                    return _mgr.save();
+                })
+                .then(() => {
+                    return this.findRemMgrId(mgrId)
+                })
         }
     }
 };

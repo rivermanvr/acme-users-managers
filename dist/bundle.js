@@ -10318,8 +10318,83 @@ return jQuery;
 
 
 /***/ }),
-/* 1 */,
-/* 2 */,
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _cleanMgrData = __webpack_require__(3);
+
+var _cleanMgrData2 = _interopRequireDefault(_cleanMgrData);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mgrList = function mgrList(state) {
+    var containerId = '#managerList';
+    var container = (0, _jquery2.default)(containerId);
+    container.empty();
+    var mgrDataCleaned = (0, _cleanMgrData2.default)(state);
+    var mgrContainers = mgrDataCleaned.map(function (manager) {
+        var team = manager.teamMembers.join(', ');
+        return '<div class="panel panel-default">\n            <div class="panel-heading">' + manager.name + '</div>\n            <div class="panel-body"><em>manages...</em><br/>' + team + '</div>\n            </div>';
+    });
+    container.html(mgrContainers);
+};
+
+exports.default = mgrList;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _mgrButton = __webpack_require__(4);
+
+var _mgrButton2 = _interopRequireDefault(_mgrButton);
+
+var _mgrSelect = __webpack_require__(5);
+
+var _mgrSelect2 = _interopRequireDefault(_mgrSelect);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var teamList = function teamList(state, onSelectMgr, onMgrStatusChg) {
+    var containerId = '#memberList';
+    var container = (0, _jquery2.default)(containerId);
+    container.empty();
+    var memberContainers = state.teamMembers.map(function (member) {
+        var section = (0, _jquery2.default)('<div class="panel panel-default">\n            <div class="panel-heading">' + member.name + '</div></div>');
+        var sectionBody = (0, _jquery2.default)('<div class="panel-body"></div>');
+        sectionBody.append((0, _mgrButton2.default)(member, onMgrStatusChg));
+        sectionBody.append((0, _mgrSelect2.default)(state.teamMembers, member, onSelectMgr));
+        section.append(sectionBody);
+        return section;
+    });
+    container.html(memberContainers);
+};
+
+exports.default = teamList;
+
+/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10431,11 +10506,11 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _mgrList = __webpack_require__(8);
+var _mgrList = __webpack_require__(1);
 
 var _mgrList2 = _interopRequireDefault(_mgrList);
 
-var _teamList = __webpack_require__(9);
+var _teamList = __webpack_require__(2);
 
 var _teamList2 = _interopRequireDefault(_teamList);
 
@@ -10469,84 +10544,6 @@ var onMgrStatusChg = function onMgrStatusChg(id) {
 
 //initial loading of data:
 getData();
-
-/***/ }),
-/* 7 */,
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _cleanMgrData = __webpack_require__(3);
-
-var _cleanMgrData2 = _interopRequireDefault(_cleanMgrData);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mgrList = function mgrList(state) {
-    var containerId = '#managerList';
-    var container = (0, _jquery2.default)(containerId);
-    container.empty();
-    var mgrDataCleaned = (0, _cleanMgrData2.default)(state);
-    var mgrContainers = mgrDataCleaned.map(function (manager) {
-        var team = manager.teamMembers.join(', ');
-        return '<div class="panel panel-default">\n            <div class="panel-heading">' + manager.name + '</div>\n            <div class="panel-body"><em>manages...</em><br/>' + team + '</div>\n            </div>';
-    });
-    container.html(mgrContainers);
-};
-
-exports.default = mgrList;
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _mgrButton = __webpack_require__(4);
-
-var _mgrButton2 = _interopRequireDefault(_mgrButton);
-
-var _mgrSelect = __webpack_require__(5);
-
-var _mgrSelect2 = _interopRequireDefault(_mgrSelect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var teamList = function teamList(state, onSelectMgr, onMgrStatusChg) {
-    var containerId = '#memberList';
-    var container = (0, _jquery2.default)(containerId);
-    container.empty();
-    var memberContainers = state.teamMembers.map(function (member) {
-        var section = (0, _jquery2.default)('<div class="panel panel-default">\n            <div class="panel-heading">' + member.name + '</div></div>');
-        var sectionBody = (0, _jquery2.default)('<div class="panel-body"></div>');
-        sectionBody.append((0, _mgrButton2.default)(member, onMgrStatusChg));
-        sectionBody.append((0, _mgrSelect2.default)(state.teamMembers, member, onSelectMgr));
-        section.append(sectionBody);
-        return section;
-    });
-    container.html(memberContainers);
-};
-
-exports.default = teamList;
 
 /***/ })
 /******/ ]);

@@ -26,7 +26,7 @@ router.get('/api/teams', (req, res, next) => {
         .catch(err => console.log(err));
 });
 
-router.put('/api/teams/id', (req, res, next) => {
+router.put('/api/teams/:id', (req, res, next) => {
     let managers, teamMembers;
     models.User.managerRecords()
         .then(_managers => {
@@ -44,20 +44,10 @@ router.put('/api/teams/id', (req, res, next) => {
         .catch(err => console.log(err));
 });
 
-router.put('/api/managers/id', (req, res, next) => {
-    let managers, teamMembers;
-    models.User.managerRecords()
-        .then(_managers => {
-            managers = _managers;
-        })
+router.put('/api/managers/:id', (req, res, next) => {
+    models.User.findUpdateMgrById(req.params.id)
         .then(() => {
-            return models.User.teamRecords()
-        })
-        .then(_teamMembers => {
-            teamMembers = _teamMembers;
-        })
-        .then(() => {
-            res.send({ managers, teamMembers });
+            res.send();
         })
         .catch(err => console.log(err));
 });
