@@ -9,18 +9,19 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/api/teams', (req, res, next) => {
+    let managers, teamMembers;
     models.User.managerRecords()
         .then(_managers => {
-            res.locals.managers = _managers;
+            managers = _managers;
         })
         .then(() => {
             return models.User.teamRecords()
         })
         .then(_teamMembers => {
-            res.locals.teamMembers = _teamMembers;
+            teamMembers = _teamMembers;
         })
         .then(() => {
-            res.send({ title: 'Home' });
+            res.send({ managers, teamMembers });
         })
         .catch(err => console.log(err));
 });

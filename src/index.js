@@ -1,19 +1,22 @@
 import $ from 'jquery';
-import ManagerList from './ManagerList';
+import renderMgrList from './ManagerList';
 
-const state = {
-    mgrRecords: []
-}
+const state = {};
 
-const renderManagersList = () => {
+const setupMgrList = () => {
     const containerId = '#managerList';
-    const {managers, selected} = state;
-    ManagerList({ containerId, mgrRecords})
+    const mgrArrCleaned = state.managers.map(manager => {
+        const teamMembers = manager.teamMember.map(member => {
+            return member.name;
+        })
+        return { name: manager.name, teamMembers }
+    })
+    renderMgrList(containerId, mgrArrCleaned);
 };
 
 $.get('/api/teams')
-    .then( title => {
-        console.log(title);
-        state.mgrRecords = _mgrRecords;
-        // renderManagersList();
+    .then( _state => {
+        state.managers = _state.managers;
+        state.teamMembers = _state.teamMembers;
+        setupMgrList();
     });
