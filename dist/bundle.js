@@ -10492,11 +10492,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var getData = function getData() {
     _jquery2.default.get('/api/teams').then(function (_state) {
         (0, _renderMgrList2.default)(_state);
-        (0, _renderTeamContainers2.default)(_state);
+        (0, _renderTeamContainers2.default)(_state, onSelectMgr, onMgrStatusChg);
     });
 };
 
-var onSelectMgr = function onSelectMgr() {
+var onSelectMgr = function onSelectMgr(id, managerId) {
     _jquery2.default.ajax({
         url: '/api/teams/' + id,
         method: 'PUT',

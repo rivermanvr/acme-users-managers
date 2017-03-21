@@ -6,11 +6,11 @@ const getData = () => {
     $.get('/api/teams')
         .then( _state => {
             renderMgrList(_state);
-            renderTeamContainers(_state);
+            renderTeamContainers(_state, onSelectMgr, onMgrStatusChg);
         });
 };
 
-const onSelectMgr = () => {
+const onSelectMgr = (id, managerId) => {
     $.ajax({
         url: `/api/teams/${id}`,
         method: 'PUT',
