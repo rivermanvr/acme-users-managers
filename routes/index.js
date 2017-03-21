@@ -27,7 +27,6 @@ router.get('/api/teams', (req, res, next) => {
 });
 
 router.put('/api/teams/:id/:mId', (req, res, next) => {
-    console.log(req.params.id, req.params.mId)
     models.User.assignMgr(req.params.id, req.params.mId)
         .then(() => {
             res.send();
