@@ -19,7 +19,7 @@ const onSelectMgr = () => {
     .then(() => getData());
 };
 
-const onMgrStatusChg = () => {
+const onMgrStatusChg = (id, status) => {
     $.ajax({
         url: `/api/teams/${id}`,
         method: 'PUT',

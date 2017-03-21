@@ -10356,7 +10356,7 @@ var onSelectMgr = function onSelectMgr() {
     });
 };
 
-var onMgrStatusChg = function onMgrStatusChg() {
+var onMgrStatusChg = function onMgrStatusChg(id, status) {
     _jquery2.default.ajax({
         url: '/api/teams/' + id,
         method: 'PUT',
@@ -10466,24 +10466,10 @@ exports.default = renderTeamContainers;
 
 /***/ }),
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mgrButton = function mgrButton(member) {};
-
-exports.default = mgrButton;
+throw new Error("Module build failed: SyntaxError: Unexpected token (24:0)\n\n\u001b[0m \u001b[90m 22 | \u001b[39m\n \u001b[90m 23 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 | \u001b[39m\u001b[33m<\u001b[39m\u001b[33mbutton\u001b[39m \u001b[36mclass\u001b[39m\u001b[33m=\u001b[39m\u001b[32m\"btn btn-default\"\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m    | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 | \u001b[39m\u001b[33m<\u001b[39m\u001b[33mspan\u001b[39m \u001b[36mclass\u001b[39m\u001b[33m=\u001b[39m\u001b[32m\"glyphicon glyphicon-hand-up\"\u001b[39m aria\u001b[33m-\u001b[39mhidden\u001b[33m=\u001b[39m\u001b[32m\"true\"\u001b[39m\u001b[33m>\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mspan\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 26 | \u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mbutton\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n");
 
 /***/ }),
 /* 8 */
