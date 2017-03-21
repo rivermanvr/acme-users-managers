@@ -1,12 +1,12 @@
 import $ from 'jquery';
-import renderMgrList from './renderMgrList';
-import renderTeamList from './renderTeamList'
+import mgrList from './mgrList';
+import teamList from './teamList'
 
 const getData = () => {
     $.get('/api/teams')
         .then( _state => {
-            renderMgrList(_state);
-            renderTeamList(_state, onSelectMgr, onMgrStatusChg);
+            mgrList(_state);
+            teamList(_state, onSelectMgr, onMgrStatusChg);
         });
 };
 
@@ -19,11 +19,10 @@ const onSelectMgr = (id, managerId) => {
     .then(() => getData());
 };
 
-const onMgrStatusChg = (id, status) => {
+const onMgrStatusChg = (id) => {
     $.ajax({
-        url: `/api/teams/${id}`,
-        method: 'PUT',
-        data: {status}
+        url: `/api/managers/${id}`,
+        method: 'PUT'
     })
     .then(() => getData());
 };

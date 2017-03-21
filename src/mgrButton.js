@@ -10,7 +10,7 @@ const mgrButton = (member, onMgrStatusChg) => {
         btn.text(`Promote to Manager`);
     }
     btn.on('click', function () {
-        onMgrStatusChg(member.id, !member.isMgr);
+        onMgrStatusChg(member.id);
     })
     let btnContainer = $(`<div class="form-group"></form>`);
     btnContainer.append(btn);

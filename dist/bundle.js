@@ -10318,41 +10318,7 @@ return jQuery;
 
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _cleanMgrData = __webpack_require__(3);
-
-var _cleanMgrData2 = _interopRequireDefault(_cleanMgrData);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var renderMgrList = function renderMgrList(state) {
-    var containerId = '#managerList';
-    var container = (0, _jquery2.default)(containerId);
-    container.empty();
-    var mgrDataCleaned = (0, _cleanMgrData2.default)(state);
-    var mgrContainers = mgrDataCleaned.map(function (manager) {
-        var team = manager.teamMembers.join(', ');
-        return '<div class="panel panel-default">\n            <div class="panel-heading">' + manager.name + '</div>\n            <div class="panel-body"><em>manages...</em><br/>' + team + '</div>\n            </div>';
-    });
-    container.html(mgrContainers);
-};
-
-exports.default = renderMgrList;
-
-/***/ }),
+/* 1 */,
 /* 2 */,
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10399,7 +10365,7 @@ var mgrButton = function mgrButton(member, onMgrStatusChg) {
         btn.text('Promote to Manager');
     }
     btn.on('click', function () {
-        onMgrStatusChg(member.id, !member.isMgr);
+        onMgrStatusChg(member.id);
     });
     var btnContainer = (0, _jquery2.default)('<div class="form-group"></form>');
     btnContainer.append(btn);
@@ -10454,8 +10420,6 @@ var mgrSelect = function mgrSelect(teamMembers, member, onSelectMgr) {
 
 exports.default = mgrSelect;
 
-// console.log(teamMembers, member);
-
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10467,20 +10431,20 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _renderMgrList = __webpack_require__(1);
+var _mgrList = __webpack_require__(8);
 
-var _renderMgrList2 = _interopRequireDefault(_renderMgrList);
+var _mgrList2 = _interopRequireDefault(_mgrList);
 
-var _renderTeamList = __webpack_require__(7);
+var _teamList = __webpack_require__(9);
 
-var _renderTeamList2 = _interopRequireDefault(_renderTeamList);
+var _teamList2 = _interopRequireDefault(_teamList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getData = function getData() {
     _jquery2.default.get('/api/teams').then(function (_state) {
-        (0, _renderMgrList2.default)(_state);
-        (0, _renderTeamList2.default)(_state, onSelectMgr, onMgrStatusChg);
+        (0, _mgrList2.default)(_state);
+        (0, _teamList2.default)(_state, onSelectMgr, onMgrStatusChg);
     });
 };
 
@@ -10494,11 +10458,10 @@ var onSelectMgr = function onSelectMgr(id, managerId) {
     });
 };
 
-var onMgrStatusChg = function onMgrStatusChg(id, status) {
+var onMgrStatusChg = function onMgrStatusChg(id) {
     _jquery2.default.ajax({
-        url: '/api/teams/' + id,
-        method: 'PUT',
-        data: { status: status }
+        url: '/api/managers/' + id,
+        method: 'PUT'
     }).then(function () {
         return getData();
     });
@@ -10508,7 +10471,43 @@ var onMgrStatusChg = function onMgrStatusChg(id, status) {
 getData();
 
 /***/ }),
-/* 7 */
+/* 7 */,
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _cleanMgrData = __webpack_require__(3);
+
+var _cleanMgrData2 = _interopRequireDefault(_cleanMgrData);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mgrList = function mgrList(state) {
+    var containerId = '#managerList';
+    var container = (0, _jquery2.default)(containerId);
+    container.empty();
+    var mgrDataCleaned = (0, _cleanMgrData2.default)(state);
+    var mgrContainers = mgrDataCleaned.map(function (manager) {
+        var team = manager.teamMembers.join(', ');
+        return '<div class="panel panel-default">\n            <div class="panel-heading">' + manager.name + '</div>\n            <div class="panel-body"><em>manages...</em><br/>' + team + '</div>\n            </div>';
+    });
+    container.html(mgrContainers);
+};
+
+exports.default = mgrList;
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10532,7 +10531,7 @@ var _mgrSelect2 = _interopRequireDefault(_mgrSelect);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var renderTeamList = function renderTeamList(state, onSelectMgr, onMgrStatusChg) {
+var teamList = function teamList(state, onSelectMgr, onMgrStatusChg) {
     var containerId = '#memberList';
     var container = (0, _jquery2.default)(containerId);
     container.empty();
@@ -10547,7 +10546,7 @@ var renderTeamList = function renderTeamList(state, onSelectMgr, onMgrStatusChg)
     container.html(memberContainers);
 };
 
-exports.default = renderTeamList;
+exports.default = teamList;
 
 /***/ })
 /******/ ]);

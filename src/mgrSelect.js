@@ -28,5 +28,3 @@ const mgrSelect = (teamMembers, member, onSelectMgr) => {
 }
 
 export default mgrSelect;
-
-// console.log(teamMembers, member);

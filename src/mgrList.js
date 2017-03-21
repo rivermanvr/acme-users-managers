@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import cleanMgrData from './cleanMgrData';
 
-const renderMgrList = (state) => {
+const mgrList = (state) => {
     const containerId = '#managerList';
     const container = $(containerId);
     container.empty();
@@ -16,4 +16,4 @@ const renderMgrList = (state) => {
     container.html(mgrContainers);
 }
 
-export default renderMgrList;
+export default mgrList;
