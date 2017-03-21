@@ -19,6 +19,11 @@ const mgrSelect = (teamMembers, member, onSelectMgr) => {
      formGrp.append(`<label>Managed By: </label>`);
      formGrp.append(selectDD);
 
+     selectDD.on('change', function(ev) {
+         ev.preventDefault();
+         onSelectMgr(member.id, this.value);
+     })
+
      return formGrp;
 }
 

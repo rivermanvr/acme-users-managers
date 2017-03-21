@@ -10457,7 +10457,7 @@ exports.default = mgrButton;
 
 
 Object.defineProperty(exports, "__esModule", {
-   value: true
+    value: true
 });
 
 var _jquery = __webpack_require__(0);
@@ -10468,24 +10468,29 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mgrSelect = function mgrSelect(teamMembers, member, onSelectMgr) {
 
-   teamMembers = teamMembers.filter(function (teamMate) {
-      return teamMate.id !== member.id && teamMate.isMgr === true;
-   });
+    teamMembers = teamMembers.filter(function (teamMate) {
+        return teamMate.id !== member.id && teamMate.isMgr === true;
+    });
 
-   var selectDD = (0, _jquery2.default)('<select class=\'form-control\'></select>');
-   selectDD.append((0, _jquery2.default)('<option></option>').attr('value', '').text('select a Manager for this team member.'));
+    var selectDD = (0, _jquery2.default)('<select class=\'form-control\'></select>');
+    selectDD.append((0, _jquery2.default)('<option></option>').attr('value', '').text('select a Manager for this team member.'));
 
-   var optionItems = teamMembers.map(function (teamMate) {
-      var optionItem = (0, _jquery2.default)('<option></option>').attr('value', teamMate.id).text(teamMate.name);
-      if (member.managerId === teamMate.id) optionItem.attr('selected', 'selected');
-      selectDD.append(optionItem);
-   });
+    var optionItems = teamMembers.map(function (teamMate) {
+        var optionItem = (0, _jquery2.default)('<option></option>').attr('value', teamMate.id).text(teamMate.name);
+        if (member.managerId === teamMate.id) optionItem.attr('selected', 'selected');
+        selectDD.append(optionItem);
+    });
 
-   var formGrp = (0, _jquery2.default)('<form-group></form-group>');
-   formGrp.append('<label>Managed By: </label>');
-   formGrp.append(selectDD);
+    var formGrp = (0, _jquery2.default)('<form-group></form-group>');
+    formGrp.append('<label>Managed By: </label>');
+    formGrp.append(selectDD);
 
-   return formGrp;
+    selectDD.on('change', function (ev) {
+        ev.preventDefault();
+        onSelectMgr(member.id, this.value);
+    });
+
+    return formGrp;
 };
 
 exports.default = mgrSelect;
