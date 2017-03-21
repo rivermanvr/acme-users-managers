@@ -10377,13 +10377,17 @@ var _mgrSelect2 = _interopRequireDefault(_mgrSelect);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var renderTeamContainers = function renderTeamContainers(state) {
-    console.log(state);
+var renderTeamContainers = function renderTeamContainers(state, onSelectMgr, onMgrStatusChg) {
     var containerId = '#memberList';
     var container = (0, _jquery2.default)(containerId);
     container.empty();
     var memberContainers = state.teamMembers.map(function (member) {
-        return '<div class="panel panel-default">\n            <div class="panel-heading">' + member.name + '</div>\n            <div class="panel-body">more stuff will be here</div>\n            </div>';
+        var section = (0, _jquery2.default)('<div class="panel panel-default">\n            <div class="panel-heading">' + member.name + '</div></div>');
+        var sectionBody = (0, _jquery2.default)('<div class="panel-body">\n            more stuff will be here</div>');
+        sectionBody.append((0, _mgrButton2.default)(member, onMgrStatusChg));
+        sectionBody.append((0, _mgrSelect2.default)(state.teamMembers, member, onSelectMgr));
+        section.append(sectionBody);
+        return section;
     });
     container.html(memberContainers);
 };
@@ -10453,7 +10457,7 @@ exports.default = mgrButton;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+     value: true
 });
 
 var _jquery = __webpack_require__(0);
@@ -10462,9 +10466,7 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mgrSelect = function mgrSelect(member) {
-    mgrSelector;
-};
+var mgrSelect = function mgrSelect(member) {};
 
 exports.default = mgrSelect;
 
