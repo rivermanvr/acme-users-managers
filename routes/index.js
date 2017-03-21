@@ -8,30 +8,19 @@ router.get('/', (req, res, next) => {
             res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 
-// router.get('/', (req, res, next) => {
-//     models.User.managerRecords()
-//         .then(_managers => {
-//             res.locals.managers = _managers;
-//         })
-//         .then(() => {
-//             return models.User.teamRecords()
-//         })
-//         .then(_teamRecs => {
-//             res.locals.teamRecs = _teamRecs;
-//         })
-//         .then(() => {
-//             res.render('index', { title: 'Home' })
-//         })
-//         .catch(err => console.log(err));
-// });
-
 router.get('/api/teams', (req, res, next) => {
     models.User.managerRecords()
         .then(_managers => {
             res.locals.managers = _managers;
         })
         .then(() => {
-            res.render('index', { title: 'Home' })
+            return models.User.teamRecords()
+        })
+        .then(_teamMembers => {
+            res.locals.teamMembers = _teamMembers;
+        })
+        .then(() => {
+            res.send({ title: 'Home' });
         })
         .catch(err => console.log(err));
 });

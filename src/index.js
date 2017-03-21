@@ -12,7 +12,8 @@ const renderManagersList = () => {
 };
 
 $.get('/api/teams')
-    .then( _mgrRecords => {
+    .then( title => {
+        console.log(title);
         state.mgrRecords = _mgrRecords;
-        renderManagersList();
+        // renderManagersList();
     });
