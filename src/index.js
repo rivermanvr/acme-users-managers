@@ -1,13 +1,32 @@
 import $ from 'jquery';
 import renderMgrList from './renderMgrList';
-import renderTeamContainers from './renderTeamContainers';
+import renderTeamContainers from './renderTeamContainers'
 
-const state = {};
+const getData = () => {
+    $.get('/api/teams')
+        .then( _state => {
+            renderMgrList(_state);
+            renderTeamContainers(_state);
+        });
+};
 
-$.get('/api/teams')
-    .then( _state => {
-        state.managers = _state.managers;
-        state.teamMembers = _state.teamMembers;
-        renderMgrList(state);
-        renderTeamContainers(state);
-    });
+const onSelectMgr = () => {
+    $.ajax({
+        url: `/api/teams/${id}`,
+        method: 'PUT',
+        data: {managerId}
+    })
+    .then(() => getData());
+};
+
+const onMgrStatusChg = () => {
+    $.ajax({
+        url: `/api/teams/${id}`,
+        method: 'PUT',
+        data: {status}
+    })
+    .then(() => getData());
+};
+
+//initial loading of data:
+getData();
