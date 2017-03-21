@@ -60,6 +60,13 @@ const defineMethods = {
                 .then(() => {
                     return this.findRemMgrId(mgrId)
                 })
+        },
+        assignMgr: function(selectedId, mgrId) {
+            return this.findById(selectedId)
+                .then(_mgr => {
+                    _mgr.managerId = mgrId;
+                    return _mgr.save();
+                })
         }
     }
 };

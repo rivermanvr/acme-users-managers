@@ -27,19 +27,9 @@ router.get('/api/teams', (req, res, next) => {
 });
 
 router.put('/api/teams/:id', (req, res, next) => {
-    let managers, teamMembers;
-    models.User.managerRecords()
-        .then(_managers => {
-            managers = _managers;
-        })
+    models.User.assignMgr(req.params.id, req.body.managerId)
         .then(() => {
-            return models.User.teamRecords()
-        })
-        .then(_teamMembers => {
-            teamMembers = _teamMembers;
-        })
-        .then(() => {
-            res.send({ managers, teamMembers });
+            res.send();
         })
         .catch(err => console.log(err));
 });
