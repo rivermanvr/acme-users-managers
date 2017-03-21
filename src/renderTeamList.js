@@ -2,7 +2,7 @@ import $ from 'jquery';
 import mgrButton from './mgrButton';
 import mgrSelect from './mgrSelect';
 
-const renderTeamContainers = (state, onSelectMgr, onMgrStatusChg) => {
+const renderTeamList = (state, onSelectMgr, onMgrStatusChg) => {
     const containerId = '#memberList';
     const container = $(containerId);
     container.empty();
@@ -18,4 +18,4 @@ const renderTeamContainers = (state, onSelectMgr, onMgrStatusChg) => {
     container.html(memberContainers);
 }
 
-export default renderTeamContainers;
+export default renderTeamList;

@@ -10353,48 +10353,7 @@ var renderMgrList = function renderMgrList(state) {
 exports.default = renderMgrList;
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _mgrButton = __webpack_require__(4);
-
-var _mgrButton2 = _interopRequireDefault(_mgrButton);
-
-var _mgrSelect = __webpack_require__(5);
-
-var _mgrSelect2 = _interopRequireDefault(_mgrSelect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var renderTeamContainers = function renderTeamContainers(state, onSelectMgr, onMgrStatusChg) {
-    var containerId = '#memberList';
-    var container = (0, _jquery2.default)(containerId);
-    container.empty();
-    var memberContainers = state.teamMembers.map(function (member) {
-        var section = (0, _jquery2.default)('<div class="panel panel-default">\n            <div class="panel-heading">' + member.name + '</div></div>');
-        var sectionBody = (0, _jquery2.default)('<div class="panel-body"></div>');
-        sectionBody.append((0, _mgrButton2.default)(member, onMgrStatusChg));
-        sectionBody.append((0, _mgrSelect2.default)(state.teamMembers, member, onSelectMgr));
-        section.append(sectionBody);
-        return section;
-    });
-    container.html(memberContainers);
-};
-
-exports.default = renderTeamContainers;
-
-/***/ }),
+/* 2 */,
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10512,16 +10471,16 @@ var _renderMgrList = __webpack_require__(1);
 
 var _renderMgrList2 = _interopRequireDefault(_renderMgrList);
 
-var _renderTeamContainers = __webpack_require__(2);
+var _renderTeamList = __webpack_require__(7);
 
-var _renderTeamContainers2 = _interopRequireDefault(_renderTeamContainers);
+var _renderTeamList2 = _interopRequireDefault(_renderTeamList);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getData = function getData() {
     _jquery2.default.get('/api/teams').then(function (_state) {
         (0, _renderMgrList2.default)(_state);
-        (0, _renderTeamContainers2.default)(_state, onSelectMgr, onMgrStatusChg);
+        (0, _renderTeamList2.default)(_state, onSelectMgr, onMgrStatusChg);
     });
 };
 
@@ -10547,6 +10506,48 @@ var onMgrStatusChg = function onMgrStatusChg(id, status) {
 
 //initial loading of data:
 getData();
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _mgrButton = __webpack_require__(4);
+
+var _mgrButton2 = _interopRequireDefault(_mgrButton);
+
+var _mgrSelect = __webpack_require__(5);
+
+var _mgrSelect2 = _interopRequireDefault(_mgrSelect);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var renderTeamList = function renderTeamList(state, onSelectMgr, onMgrStatusChg) {
+    var containerId = '#memberList';
+    var container = (0, _jquery2.default)(containerId);
+    container.empty();
+    var memberContainers = state.teamMembers.map(function (member) {
+        var section = (0, _jquery2.default)('<div class="panel panel-default">\n            <div class="panel-heading">' + member.name + '</div></div>');
+        var sectionBody = (0, _jquery2.default)('<div class="panel-body"></div>');
+        sectionBody.append((0, _mgrButton2.default)(member, onMgrStatusChg));
+        sectionBody.append((0, _mgrSelect2.default)(state.teamMembers, member, onSelectMgr));
+        section.append(sectionBody);
+        return section;
+    });
+    container.html(memberContainers);
+};
+
+exports.default = renderTeamList;
 
 /***/ })
 /******/ ]);

@@ -1,12 +1,12 @@
 import $ from 'jquery';
 import renderMgrList from './renderMgrList';
-import renderTeamContainers from './renderTeamContainers'
+import renderTeamList from './renderTeamList'
 
 const getData = () => {
     $.get('/api/teams')
         .then( _state => {
             renderMgrList(_state);
-            renderTeamContainers(_state, onSelectMgr, onMgrStatusChg);
+            renderTeamList(_state, onSelectMgr, onMgrStatusChg);
         });
 };
 
