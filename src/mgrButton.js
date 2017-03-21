@@ -18,9 +18,3 @@ const mgrButton = (member) => {
 }
 
 export default mgrButton;
-
-
-
-<button class="btn btn-default">
-<span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
-</button>

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10318,8 +10318,156 @@ return jQuery;
 
 
 /***/ }),
-/* 1 */,
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _cleanMgrData = __webpack_require__(3);
+
+var _cleanMgrData2 = _interopRequireDefault(_cleanMgrData);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var renderMgrList = function renderMgrList(state) {
+    var containerId = '#managerList';
+    var container = (0, _jquery2.default)(containerId);
+    container.empty();
+    var mgrDataCleaned = (0, _cleanMgrData2.default)(state);
+    var mgrContainers = mgrDataCleaned.map(function (manager) {
+        var team = manager.teamMembers.join(', ');
+        return '<div class="panel panel-default">\n            <div class="panel-heading">' + manager.name + '</div>\n            <div class="panel-body"><em>manages...</em><br/>' + team + '</div>\n            </div>';
+    });
+    container.html(mgrContainers);
+};
+
+exports.default = renderMgrList;
+
+/***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _mgrButton = __webpack_require__(4);
+
+var _mgrButton2 = _interopRequireDefault(_mgrButton);
+
+var _mgrSelect = __webpack_require__(5);
+
+var _mgrSelect2 = _interopRequireDefault(_mgrSelect);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var renderTeamContainers = function renderTeamContainers(state) {
+    console.log(state);
+    var containerId = '#memberList';
+    var container = (0, _jquery2.default)(containerId);
+    container.empty();
+    var memberContainers = state.teamMembers.map(function (member) {
+        return '<div class="panel panel-default">\n            <div class="panel-heading">' + member.name + '</div>\n            <div class="panel-body">more stuff will be here</div>\n            </div>';
+    });
+    container.html(memberContainers);
+};
+
+exports.default = renderTeamContainers;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var cleanMgrData = function cleanMgrData(state) {
+    return state.managers.map(function (manager) {
+        var teamMembers = manager.teamMember.map(function (member) {
+            return member.name;
+        });
+        return { name: manager.name, teamMembers: teamMembers };
+    });
+};
+
+exports.default = cleanMgrData;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mgrButton = function mgrButton(member) {
+    var btn = (0, _jquery2.default)('<button class="btn btn-default">\n        <span class="glyphicon glyphicon-hand-up" aria-hidden="true">\n        </span></button>');
+    if (member.isMgr) {
+        btn.text('remove as Manager');
+    } else {
+        btn.text('Promote to Manager');
+    }
+    btn.on('click', function () {
+        onMgrStatusChg(member.id, !member.isMgr);
+    });
+    var btnContainer = (0, _jquery2.default)('<div class="form-group"></form>');
+    btnContainer.append(btn);
+    return btnContainer;
+};
+
+exports.default = mgrButton;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mgrSelect = function mgrSelect() {};
+
+exports.default = mgrSelect;
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10329,11 +10477,11 @@ var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _renderMgrList = __webpack_require__(3);
+var _renderMgrList = __webpack_require__(1);
 
 var _renderMgrList2 = _interopRequireDefault(_renderMgrList);
 
-var _renderTeamContainers = __webpack_require__(6);
+var _renderTeamContainers = __webpack_require__(2);
 
 var _renderTeamContainers2 = _interopRequireDefault(_renderTeamContainers);
 
@@ -10368,129 +10516,6 @@ var onMgrStatusChg = function onMgrStatusChg(id, status) {
 
 //initial loading of data:
 getData();
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _cleanMgrData = __webpack_require__(5);
-
-var _cleanMgrData2 = _interopRequireDefault(_cleanMgrData);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var renderMgrList = function renderMgrList(state) {
-    var containerId = '#managerList';
-    var container = (0, _jquery2.default)(containerId);
-    container.empty();
-    var mgrDataCleaned = (0, _cleanMgrData2.default)(state);
-    var mgrContainers = mgrDataCleaned.map(function (manager) {
-        var team = manager.teamMembers.join(', ');
-        return '<div class="panel panel-default">\n            <div class="panel-heading">' + manager.name + '</div>\n            <div class="panel-body"><em>manages...</em><br/>' + team + '</div>\n            </div>';
-    });
-    container.html(mgrContainers);
-};
-
-exports.default = renderMgrList;
-
-/***/ }),
-/* 4 */,
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var cleanMgrData = function cleanMgrData(state) {
-    return state.managers.map(function (manager) {
-        var teamMembers = manager.teamMember.map(function (member) {
-            return member.name;
-        });
-        return { name: manager.name, teamMembers: teamMembers };
-    });
-};
-
-exports.default = cleanMgrData;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _mgrButton = __webpack_require__(7);
-
-var _mgrButton2 = _interopRequireDefault(_mgrButton);
-
-var _mgrSelect = __webpack_require__(8);
-
-var _mgrSelect2 = _interopRequireDefault(_mgrSelect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var renderTeamContainers = function renderTeamContainers(state) {
-    console.log(state);
-    var containerId = '#memberList';
-    var container = (0, _jquery2.default)(containerId);
-    container.empty();
-    var memberContainers = state.teamMembers.map(function (member) {
-        return '<div class="panel panel-default">\n            <div class="panel-heading">' + member.name + '</div>\n            <div class="panel-body">more stuff will be here</div>\n            </div>';
-    });
-    container.html(memberContainers);
-};
-
-exports.default = renderTeamContainers;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-"use strict";
-throw new Error("Module build failed: SyntaxError: Unexpected token (24:0)\n\n\u001b[0m \u001b[90m 22 | \u001b[39m\n \u001b[90m 23 | \u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 | \u001b[39m\u001b[33m<\u001b[39m\u001b[33mbutton\u001b[39m \u001b[36mclass\u001b[39m\u001b[33m=\u001b[39m\u001b[32m\"btn btn-default\"\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m    | \u001b[39m\u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 | \u001b[39m\u001b[33m<\u001b[39m\u001b[33mspan\u001b[39m \u001b[36mclass\u001b[39m\u001b[33m=\u001b[39m\u001b[32m\"glyphicon glyphicon-hand-up\"\u001b[39m aria\u001b[33m-\u001b[39mhidden\u001b[33m=\u001b[39m\u001b[32m\"true\"\u001b[39m\u001b[33m>\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mspan\u001b[39m\u001b[33m>\u001b[39m\n \u001b[90m 26 | \u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mbutton\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n");
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _jquery = __webpack_require__(0);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mgrSelect = function mgrSelect() {};
-
-exports.default = mgrSelect;
 
 /***/ })
 /******/ ]);
