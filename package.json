@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "repository": "https://github.com/rivermanvr/acme-users-managers",
-  "author": "rivermanvr <vrgithub@riversconsulting.com>",
+  "author": "Vince Rios",
   "scripts": {
     "webpack": "./node_modules/webpack/bin/webpack.js -w",
     "start:dev": "npm run webpack & nodemon --ignore dist/ --ignore src/ server.js"
