@@ -2,7 +2,7 @@ const http = require( 'http' );
 const app = require('./app' );
 const acmeDB = require('./db');
 const server = http.createServer(app);
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 acmeDB.seed()
     .then(() => console.log('acmeDB is seeded'))
